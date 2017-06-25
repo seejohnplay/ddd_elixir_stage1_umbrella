@@ -1,0 +1,33 @@
+<h2>Show Handling event</h2>
+
+<ul>
+
+  <li>
+    <strong>Type:</strong>
+    <%= @handling_event.type %>
+  </li>
+
+  <li>
+    <strong>Locationid:</strong>
+    <%= @handling_event.locationId %>
+  </li>
+
+  <li>
+    <strong>Completiontime:</strong>
+    <%= @handling_event.completionTime %>
+  </li>
+
+  <li>
+    <strong>Registrationtime:</strong>
+    <%= @handling_event.registrationTime %>
+  </li>
+
+  <li>
+    <strong>Cargoid:</strong>
+    <%= @handling_event.cargoId %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: tracking_handling_event_path(@conn, :edit, @handling_event) %></span>
+<span><%= link "Back", to: tracking_handling_event_path(@conn, :index) %></span>

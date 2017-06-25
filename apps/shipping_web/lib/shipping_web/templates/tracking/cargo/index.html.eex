@@ -1,0 +1,28 @@
+<h2>Listing Cargoes</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Trackingid</th>
+      <th>Status</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for cargo <- @cargoes do %>
+    <tr>
+      <td><%= cargo.trackingId %></td>
+      <td><%= cargo.status %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: tracking_cargo_path(@conn, :show, cargo), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: tracking_cargo_path(@conn, :edit, cargo), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: tracking_cargo_path(@conn, :delete, cargo), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Cargo", to: tracking_cargo_path(@conn, :new) %></span>

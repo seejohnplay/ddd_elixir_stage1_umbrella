@@ -1,0 +1,18 @@
+<h2>Show Cargo</h2>
+
+<ul>
+
+  <li>
+    <strong>Trackingid:</strong>
+    <%= @cargo.trackingId %>
+  </li>
+
+  <li>
+    <strong>Status:</strong>
+    <%= @cargo.status %>
+  </li>
+
+</ul>
+
+<span><%= link "Edit", to: tracking_cargo_path(@conn, :edit, @cargo) %></span>
+<span><%= link "Back", to: tracking_cargo_path(@conn, :index) %></span>

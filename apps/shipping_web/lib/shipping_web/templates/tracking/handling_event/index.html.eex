@@ -1,0 +1,34 @@
+<h2>Listing Handling events</h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Type</th>
+      <th>Locationid</th>
+      <th>Completiontime</th>
+      <th>Registrationtime</th>
+      <th>Cargoid</th>
+
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+<%= for handling_event <- @handling_events do %>
+    <tr>
+      <td><%= handling_event.type %></td>
+      <td><%= handling_event.locationId %></td>
+      <td><%= handling_event.completionTime %></td>
+      <td><%= handling_event.registrationTime %></td>
+      <td><%= handling_event.cargoId %></td>
+
+      <td class="text-right">
+        <span><%= link "Show", to: tracking_handling_event_path(@conn, :show, handling_event), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Edit", to: tracking_handling_event_path(@conn, :edit, handling_event), class: "btn btn-default btn-xs" %></span>
+        <span><%= link "Delete", to: tracking_handling_event_path(@conn, :delete, handling_event), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %></span>
+      </td>
+    </tr>
+<% end %>
+  </tbody>
+</table>
+
+<span><%= link "New Handling event", to: tracking_handling_event_path(@conn, :new) %></span>

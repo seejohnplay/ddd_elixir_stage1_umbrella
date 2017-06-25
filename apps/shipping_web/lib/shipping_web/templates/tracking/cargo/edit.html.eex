@@ -1,0 +1,6 @@
+<h2>Edit Cargo</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: tracking_cargo_path(@conn, :update, @cargo) %>
+
+<span><%= link "Back", to: tracking_cargo_path(@conn, :index) %></span>

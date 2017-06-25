@@ -1,0 +1,6 @@
+<h2>New Handling event</h2>
+
+<%= render "form.html", changeset: @changeset,
+                        action: tracking_handling_event_path(@conn, :create) %>
+
+<span><%= link "Back", to: tracking_handling_event_path(@conn, :index) %></span>
