@@ -12,7 +12,6 @@ Make sure you have the following installed:
 * elixir 1.4
 * phoenix 1.3 rc 2 __NOTA BENE:__ As of, 25 Jun 2017, the application requires the master branch of Phoenix. See below, in the building steps, on how to incorporate this version of Phoenix in the mix instructions (mix.exs).
 
-
 ### Generating this project.
 Skip these steps if you have retrieved the project from GitHub.
 1. mix phx.new ddd_elixir_stage1 --umbrella --app shipping
