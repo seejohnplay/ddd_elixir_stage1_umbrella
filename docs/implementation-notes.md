@@ -49,11 +49,11 @@ end
 
 ### Using the web application  
 Two sets of hard-wired data for Cargoes and HandlingEvents are part of the Shipping.Repo.
-    * The url: [localhost:4000/tracking/cargoes](localhost:4000/tracking/cargoes) will list all of the hard-wired cargoes.
-    * The url: [localhost:4000/tracking/cargoes/1](localhost:4000/tracking/cargoes/1) will fetch the cargo with id equal to 1.
-    * The url: [localhost:4000/tracking/handling_events](localhost:4000/tracking/handling_events) will list all of the hard-wired handling events.
-    * The url: [localhost:4000/tracking/handling_events/1](localhost:4000/tracking/handling_events/1) will fethc the handling event with id equal to 1.
-    * No other operations are supported as of 25 Jun 2017
+* The url: [localhost:4000/tracking/cargoes](localhost:4000/tracking/cargoes) will list all of the hard-wired cargoes.
+* The url: [localhost:4000/tracking/cargoes/1](localhost:4000/tracking/cargoes/1) will fetch the cargo with id equal to 1.
+* The url: [localhost:4000/tracking/handling_events](localhost:4000/tracking/handling_events) will list all of the hard-wired handling events.
+* The url: [localhost:4000/tracking/handling_events/1](localhost:4000/tracking/handling_events/1) will fethc the handling event with id equal to 1.
+* No other operations are supported as of 25 Jun 2017
 
 ## Observations on the Java Implementation    
 1. WebAPI requests. The following requests were noted while monitoring the network activity of the Java implementation's web pages. We will not need to address all of them, initially. And, of course, we can change them.
