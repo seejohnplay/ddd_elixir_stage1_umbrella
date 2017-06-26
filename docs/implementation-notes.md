@@ -13,37 +13,42 @@ Make sure you have the following installed:
 * phoenix 1.3 rc 2 __NOTA BENE:__ As of, 25 Jun 2017, the application requires the master branch of Phoenix. See below, in the building steps, on how to incorporate this version of Phoenix in the mix instructions (mix.exs).
 
 
-1. Steps used to generate this project. Skip these steps if you have retrieved the project from GitHub.
-    1. mix phx.new ddd_elixir_stage1 --umbrella --app shipping
-    2. cd ddd_elixir_stage1_umbrella
-    3. mix deps.clean phoenix
-    4. Edit the mix.exs file in apps/shipping_web. Change the phoenix dependency to the following:
-    ~~~~
-    {:phoenix, github: "phoenixframework/phoenix", override: true},  
-    ~~~~
-    this will ensure that you are using the master branch of the Phoenix repository.
-    5. mix deps.get
-    6. cd apps/shipping_web
-    7. mix phx.gen.html Tracking Cargo cargoes id status --web Tracking
-    8. mix phx.gen.html Tracking HandlingEvent handling_events type locationId completionTime registrationTime cargoId  --web Tracking    
-    9. Edit apps/shipping_web/lib/shipping_web/router.ex and add the following scope after the existing scope:  
-    ~~~~
-    scope "/tracking", Shipping.Web.Tracking, as: :tracking do
-      pipe_through :browser
+### Generating this project.
+Skip these steps if you have retrieved the project from GitHub.
+1. mix phx.new ddd_elixir_stage1 --umbrella --app shipping
+2. cd ddd_elixir_stage1_umbrella
+3. mix deps.clean phoenix
+4. Edit the mix.exs file in apps/shipping_web. Change the phoenix dependency to the following:
+~~~~
+{:phoenix, github: "phoenixframework/phoenix", override: true},  
+~~~~
+this will ensure that you are using the master branch of the Phoenix repository.
 
-      resources "/cargoes", CargoController
-      resources "/handling_events", HandlingEventController
-    end
-    ~~~~
-2. Building the project
-    1. cd ddd_elixir_stage1_umbrella
-    2. mix deps.get
-    3. cd apps/shipping_web/assets
-    4. npm install
-3. Running the web application
-    1. cd ddd_elixir_stage1_umbrella
-    2. phx.server
-4. Using the web application  
+5. mix deps.get
+6. cd apps/shipping_web
+7. mix phx.gen.html Tracking Cargo cargoes id status --web Tracking
+8. mix phx.gen.html Tracking HandlingEvent handling_events type locationId completionTime registrationTime cargoId  --web Tracking    
+9. Edit apps/shipping_web/lib/shipping_web/router.ex and add the following scope after the existing scope:  
+~~~~
+scope "/tracking", Shipping.Web.Tracking, as: :tracking do
+  pipe_through :browser
+
+  resources "/cargoes", CargoController
+  resources "/handling_events", HandlingEventController
+end
+~~~~
+
+### Building this project
+1. cd ddd_elixir_stage1_umbrella
+2. mix deps.get
+3. cd apps/shipping_web/assets
+4. npm install
+
+### Running the web application
+1. cd ddd_elixir_stage1_umbrella
+2. phx.server
+
+### Using the web application  
 Two sets of hard-wired data for Cargoes and HandlingEvents are part of the Shipping.Repo.
     * The url: [localhost:4000/tracking/cargoes](localhost:4000/tracking/cargoes) will list all of the hard-wired cargoes.
     * The url: [localhost:4000/tracking/cargoes/1](localhost:4000/tracking/cargoes/1) will fetch the cargo with id equal to 1.
