@@ -6,33 +6,33 @@
   <% end %>
 
   <div class="form-group">
-    <%= label f, :type, class: "control-label" %>
-    <%= text_input f, :type, class: "form-control" %>
-    <%= error_tag f, :type %>
-  </div>
-
-  <div class="form-group">
-    <%= label f, :locationId, class: "control-label" %>
-    <%= text_input f, :locationId, class: "form-control" %>
-    <%= error_tag f, :locationId %>
+    <%= label f, :trackingId, class: "control-label" %>
+    <%= text_input f, :trackingId, class: "form-control" %>
+    <%= error_tag f, :trackingId %>
   </div>
 
   <div class="form-group">
     <%= label f, :completionTime, class: "control-label" %>
-    <%= text_input f, :completionTime, class: "form-control" %>
+    <%= datetime_select f, :completionTime, class: "form-control" %>
     <%= error_tag f, :completionTime %>
   </div>
 
   <div class="form-group">
+    <%= label f, :location, class: "control-label" %>
+    <%= select f, :location, @location_map, class: "form-control" %>
+    <%= error_tag f, :location %>
+  </div>
+
+  <div class="form-group">
     <%= label f, :registrationTime, class: "control-label" %>
-    <%= text_input f, :registrationTime, class: "form-control" %>
+    <%= datetime_select f, :registrationTime, class: "form-control" %>
     <%= error_tag f, :registrationTime %>
   </div>
 
   <div class="form-group">
-    <%= label f, :cargoId, class: "control-label" %>
-    <%= text_input f, :cargoId, class: "form-control" %>
-    <%= error_tag f, :cargoId %>
+    <%= label f, :type, class: "control-label" %>
+    <%= select f, :type, @handling_event_type_map, class: "form-control" %>
+    <%= error_tag f, :type %>
   </div>
 
   <div class="form-group">

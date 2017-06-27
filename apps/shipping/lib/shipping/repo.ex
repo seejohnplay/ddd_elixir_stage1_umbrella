@@ -13,30 +13,22 @@ defmodule Shipping.Repo do
   ##############################################################################
   # Support for Handling Events
   ##############################################################################
-  # schema "handling_events" do
-  #   field :cargoId, :string
-  #   field :completionTime, :string
-  #   field :locationId, :string
-  #   field :registrationTime, :string
-  #   field :type, :string
-  #
-  #   timestamps()
-  # end
-
-  def all(HandlingEvent) do
-    [
-      %HandlingEvent{id: 1, type: "RECEIVE", cargoId: "ABC123", locationId: "CHHKG"},
-      %HandlingEvent{id: 2, type: "LOAD", cargoId: "ABC123", locationId: "CHHKG"},
-      %HandlingEvent{id: 3, type: "UNLOAD", cargoId: "ABC123", locationId: "USNYC"}
-    ]
+  # TODO: Store the HandlingEvent in an Agent or to disk
+  def insert(%Ecto.Changeset{data: %HandlingEvent{} = handlingEvent} = changeset) do
+    if changeset.valid? do
+      {:ok, %{changeset.data | id: 1}}  # TODO: should be incremented
+    else
+      {:error, %{changeset | action: :insert}}
+    end
   end
 
   def get!(HandlingEvent, id) when is_binary(id) do
     get!(HandlingEvent, String.to_integer(id))
   end
+  ######################################################################
+  ###### TODO: Remove hard-wired return of handling event
   def get!(HandlingEvent, id) do
-    all(HandlingEvent)
-    |> Enum.find(fn handling_event -> handling_event.id == id end)
+    %HandlingEvent{id: id, trackingId: "ABC123" }    
   end
 
   ##############################################################################

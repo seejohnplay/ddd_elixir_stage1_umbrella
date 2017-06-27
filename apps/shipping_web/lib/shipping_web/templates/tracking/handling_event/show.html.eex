@@ -8,8 +8,8 @@
   </li>
 
   <li>
-    <strong>Locationid:</strong>
-    <%= @handling_event.locationId %>
+    <strong>Location:</strong>
+    <%= @handling_event.location %>
   </li>
 
   <li>
@@ -23,8 +23,8 @@
   </li>
 
   <li>
-    <strong>Cargoid:</strong>
-    <%= @handling_event.cargoId %>
+    <strong>TrackingId:</strong>
+    <%= @handling_event.trackingId %>
   </li>
 
 </ul>

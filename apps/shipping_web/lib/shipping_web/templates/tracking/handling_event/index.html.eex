@@ -4,10 +4,10 @@
   <thead>
     <tr>
       <th>Type</th>
-      <th>Locationid</th>
+      <th>Location</th>
       <th>Completiontime</th>
       <th>Registrationtime</th>
-      <th>Cargoid</th>
+      <th>TrackingId</th>
 
       <th></th>
     </tr>
@@ -16,10 +16,10 @@
 <%= for handling_event <- @handling_events do %>
     <tr>
       <td><%= handling_event.type %></td>
-      <td><%= handling_event.locationId %></td>
+      <td><%= handling_event.location %></td>
       <td><%= handling_event.completionTime %></td>
       <td><%= handling_event.registrationTime %></td>
-      <td><%= handling_event.cargoId %></td>
+      <td><%= handling_event.trackingId %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: tracking_handling_event_path(@conn, :show, handling_event), class: "btn btn-default btn-xs" %></span>

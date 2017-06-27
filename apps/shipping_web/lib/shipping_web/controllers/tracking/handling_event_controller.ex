@@ -10,7 +10,9 @@ defmodule Shipping.Web.Tracking.HandlingEventController do
 
   def new(conn, _params) do
     changeset = Tracking.change_handling_event(%Shipping.Tracking.HandlingEvent{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", changeset: changeset,
+                            location_map: Tracking.location_map(),
+                            handling_event_type_map: Tracking.handling_event_type_map())
   end
 
   def create(conn, %{"handling_event" => handling_event_params}) do
@@ -20,7 +22,9 @@ defmodule Shipping.Web.Tracking.HandlingEventController do
         |> put_flash(:info, "Handling event created successfully.")
         |> redirect(to: tracking_handling_event_path(conn, :show, handling_event))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", changeset: changeset,
+                                location_map: Tracking.location_map(),
+                                handling_event_type_map: Tracking.handling_event_type_map())
     end
   end
 

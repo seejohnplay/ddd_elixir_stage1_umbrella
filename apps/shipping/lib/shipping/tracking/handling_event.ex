@@ -5,10 +5,10 @@ defmodule Shipping.Tracking.HandlingEvent do
 
 
   schema "handling_events" do
-    field :cargoId, :string
-    field :completionTime, :string
-    field :locationId, :string
-    field :registrationTime, :string
+    field :completionTime, :utc_datetime
+    field :location, :string
+    field :registrationTime, :utc_datetime
+    field :trackingId, :string
     field :type, :string
 
     timestamps()
@@ -17,7 +17,7 @@ defmodule Shipping.Tracking.HandlingEvent do
   @doc false
   def changeset(%HandlingEvent{} = handling_event, attrs) do
     handling_event
-    |> cast(attrs, [:type, :locationId, :completionTime, :registrationTime, :cargoId])
-    |> validate_required([:type, :locationId, :completionTime, :registrationTime, :cargoId])
+    |> cast(attrs, [:type, :location, :completionTime, :registrationTime, :trackingId])
+    |> validate_required([:type, :location, :completionTime, :registrationTime, :trackingId])
   end
 end
