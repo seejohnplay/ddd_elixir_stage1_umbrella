@@ -197,4 +197,43 @@ defmodule Shipping.Tracking do
   def change_handling_event(%HandlingEvent{} = handling_event) do
     HandlingEvent.changeset(handling_event, %{})
   end
+
+  #############################################################################
+  # Support for Locations
+  #############################################################################
+  @location_map  %{
+    "Hongkong": "CHHKG",
+    "Melbourne": "AUMEL",
+    "Stockholm": "SESTO",
+    "Helsinki": "FIHEL",
+    "Chicago": "USCHI",
+    "Tokyo": "JPTKO",
+    "Hamburg": "DEHAM",
+    "Shanghai": "CNSHA",
+    "Rotterdam": "NLRTM",
+    "Goteborg": "SEGOT",
+    "Hangzhou": "CHHGH",
+    "New York": "USNYC",
+    "Dallas": "USDAL"
+  }
+
+  def location_map do
+    @location_map
+  end
+
+  #############################################################################
+  # Support for HandlingEvent types
+  #############################################################################
+  @handling_event_type_map %{
+    "Load": "LOAD",
+    "Unload": "UNLOAD",
+    "Receive": "RECEIVE",
+    "Claim": "CLAIM",
+    "Cutsoms": "CUSTOMS"
+  }
+
+  def handling_event_type_map do
+    @handling_event_type_map
+  end
+
 end
