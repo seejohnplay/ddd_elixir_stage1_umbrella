@@ -12,19 +12,19 @@ defmodule Shipping.Repo do
 
   def all(HandlingEvent) do
       [
-        %HandlingEvent{id: 1, type: "RECEIVE", trackingId: "ABC123", location: "CHHKG",
-                completionTime: elem(DateTime.from_iso8601("2017-06-20T23:00:00Z"), 1) },
-        %HandlingEvent{id: 2, type: "LOAD", trackingId: "ABC123", location: "CHHKG",
-                completionTime: elem(DateTime.from_iso8601("2017-06-22T23:00:00Z"), 1) },
-        %HandlingEvent{id: 3, type: "UNLOAD", trackingId: "ABC123", location: "USNYC",
-                completionTime: elem(DateTime.from_iso8601("2017-06-29T23:00:00Z"), 1) },
+        %HandlingEvent{id: 1, type: "RECEIVE", tracking_id: "ABC123", location: "CHHKG",
+                completion_time: elem(DateTime.from_iso8601("2017-06-20T23:00:00Z"), 1) },
+        %HandlingEvent{id: 2, type: "LOAD", tracking_id: "ABC123", location: "CHHKG",
+                completion_time: elem(DateTime.from_iso8601("2017-06-22T23:00:00Z"), 1) },
+        %HandlingEvent{id: 3, type: "UNLOAD", tracking_id: "ABC123", location: "USNYC",
+                completion_time: elem(DateTime.from_iso8601("2017-06-29T23:00:00Z"), 1) },
       ]
   end
 
   def all(Cargo) do
     [
-      %Cargo{id: 1, trackingId: "ABC123", status: "IN PORT"},
-      %Cargo{id: 2, trackingId: "IJK456", status: "ON CARRIER"}
+      %Cargo{id: 1, tracking_id: "ABC123", status: "IN PORT"},
+      %Cargo{id: 2, tracking_id: "IJK456", status: "ON CARRIER"}
     ]
   end
 
@@ -55,13 +55,13 @@ defmodule Shipping.Repo do
     |> Enum.find(fn cargo -> cargo.id == id end)
   end
 
-  def get_by_trackingId!(HandlingEvent, trackingId) do
+  def get_by_tracking_id!(HandlingEvent, tracking_id) do
     all(HandlingEvent)
-    |> Enum.filter(fn handling_event -> handling_event.trackingId == trackingId end)
+    |> Enum.filter(fn handling_event -> handling_event.tracking_id == tracking_id end)
   end
 
-  def get_by_trackingId!(Cargo, trackingId) do
+  def get_by_tracking_id!(Cargo, tracking_id) do
     all(Cargo)
-    |> Enum.find(fn cargo -> cargo.trackingId == trackingId end)
+    |> Enum.find(fn cargo -> cargo.tracking_id == tracking_id end)
   end
 end

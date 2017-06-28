@@ -6,9 +6,9 @@ defmodule Shipping.TrackingTest do
   describe "cargoes" do
     alias Shipping.Tracking.Cargo
 
-    @valid_attrs %{status: "some status", trackingId: "some trackingId"}
-    @update_attrs %{status: "some updated status", trackingId: "some updated trackingId"}
-    @invalid_attrs %{status: nil, trackingId: nil}
+    @valid_attrs %{status: "some status", tracking_id: "some tracking_id"}
+    @update_attrs %{status: "some updated status", tracking_id: "some updated tracking_id"}
+    @invalid_attrs %{status: nil, tracking_id: nil}
 
     def cargo_fixture(attrs \\ %{}) do
       {:ok, cargo} =
@@ -32,7 +32,7 @@ defmodule Shipping.TrackingTest do
     test "create_cargo/1 with valid data creates a cargo" do
       assert {:ok, %Cargo{} = cargo} = Tracking.create_cargo(@valid_attrs)
       assert cargo.status == "some status"
-      assert cargo.trackingId == "some trackingId"
+      assert cargo.tracking_id == "some tracking_id"
     end
 
     test "create_cargo/1 with invalid data returns error changeset" do
@@ -44,7 +44,7 @@ defmodule Shipping.TrackingTest do
       assert {:ok, cargo} = Tracking.update_cargo(cargo, @update_attrs)
       assert %Cargo{} = cargo
       assert cargo.status == "some updated status"
-      assert cargo.trackingId == "some updated trackingId"
+      assert cargo.tracking_id == "some updated tracking_id"
     end
 
     test "update_cargo/2 with invalid data returns error changeset" do
@@ -68,9 +68,9 @@ defmodule Shipping.TrackingTest do
   describe "handling_events" do
     alias Shipping.Tracking.HandlingEvent
 
-    @valid_attrs %{cargoId: "some cargoId", completionTime: "some completionTime", locationId: "some locationId", registrationTime: "some registrationTime", type: "some type"}
-    @update_attrs %{cargoId: "some updated cargoId", completionTime: "some updated completionTime", locationId: "some updated locationId", registrationTime: "some updated registrationTime", type: "some updated type"}
-    @invalid_attrs %{cargoId: nil, completionTime: nil, locationId: nil, registrationTime: nil, type: nil}
+    @valid_attrs %{cargo_id: "some cargo_id", completion_time: "some completion_time", cargo_id: "some cargo_id", registration_time: "some registration_time", type: "some type"}
+    @update_attrs %{cargo_id: "some updated cargo_id", completion_time: "some updated completion_time", cargo_id: "some updated cargo_id", registration_time: "some updated registration_time", type: "some updated type"}
+    @invalid_attrs %{cargo_id: nil, completion_time: nil, cargo_id: nil, registration_time: nil, type: nil}
 
     def handling_event_fixture(attrs \\ %{}) do
       {:ok, handling_event} =
@@ -93,10 +93,10 @@ defmodule Shipping.TrackingTest do
 
     test "create_handling_event/1 with valid data creates a handling_event" do
       assert {:ok, %HandlingEvent{} = handling_event} = Tracking.create_handling_event(@valid_attrs)
-      assert handling_event.cargoId == "some cargoId"
-      assert handling_event.completionTime == "some completionTime"
-      assert handling_event.locationId == "some locationId"
-      assert handling_event.registrationTime == "some registrationTime"
+      assert handling_event.cargo_id == "some cargo_id"
+      assert handling_event.completion_time == "some completion_time"
+      assert handling_event.cargo_id == "some cargo_id"
+      assert handling_event.registration_time == "some registration_time"
       assert handling_event.type == "some type"
     end
 
@@ -108,10 +108,10 @@ defmodule Shipping.TrackingTest do
       handling_event = handling_event_fixture()
       assert {:ok, handling_event} = Tracking.update_handling_event(handling_event, @update_attrs)
       assert %HandlingEvent{} = handling_event
-      assert handling_event.cargoId == "some updated cargoId"
-      assert handling_event.completionTime == "some updated completionTime"
-      assert handling_event.locationId == "some updated locationId"
-      assert handling_event.registrationTime == "some updated registrationTime"
+      assert handling_event.cargo_id == "some updated cargo_id"
+      assert handling_event.completion_time == "some updated completion_time"
+      assert handling_event.cargo_id == "some updated cargo_id"
+      assert handling_event.registration_time == "some updated registration_time"
       assert handling_event.type == "some updated type"
     end
 

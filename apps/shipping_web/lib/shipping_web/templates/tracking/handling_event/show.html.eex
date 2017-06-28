@@ -13,18 +13,18 @@
   </li>
 
   <li>
-    <strong>Completiontime:</strong>
-    <%= @handling_event.completionTime %>
+    <strong>Completion Time:</strong>
+    <%= @handling_event.completion_time %>
   </li>
 
   <li>
-    <strong>Registrationtime:</strong>
-    <%= @handling_event.registrationTime %>
+    <strong>Registration Time:</strong>
+    <%= @handling_event.registration_time %>
   </li>
 
   <li>
-    <strong>TrackingId:</strong>
-    <%= @handling_event.trackingId %>
+    <strong>Tracking Id:</strong>
+    <%= @handling_event.tracking_id %>
   </li>
 
   <li>

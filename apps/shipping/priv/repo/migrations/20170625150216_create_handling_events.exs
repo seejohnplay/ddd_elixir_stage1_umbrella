@@ -5,9 +5,9 @@ defmodule Shipping.Repo.Migrations.CreateHandlingEvents do
     create table(:handling_events) do
       add :type, :string
       add :location, :string
-      add :completionTime, :string
-      add :registrationTime, :string
-      add :trackingId, :string
+      add :completion_time, :string
+      add :registration_time, :string
+      add :tracking_id, :string
 
       timestamps()
     end

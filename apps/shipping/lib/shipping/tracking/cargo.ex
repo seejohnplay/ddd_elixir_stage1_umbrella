@@ -6,7 +6,7 @@ defmodule Shipping.Tracking.Cargo do
 
   schema "cargoes" do
     field :status, :string
-    field :trackingId, :string
+    field :tracking_id, :string
 
     timestamps()
   end
@@ -14,7 +14,7 @@ defmodule Shipping.Tracking.Cargo do
   @doc false
   def changeset(%Cargo{} = cargo, attrs) do
     cargo
-    |> cast(attrs, [:trackingId, :status])
-    |> validate_required([:trackingId, :status])
+    |> cast(attrs, [:tracking_id, :status])
+    |> validate_required([:tracking_id, :status])
   end
 end

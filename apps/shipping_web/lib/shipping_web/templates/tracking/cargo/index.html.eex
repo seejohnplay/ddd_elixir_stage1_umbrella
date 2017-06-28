@@ -3,7 +3,7 @@
 <table class="table">
   <thead>
     <tr>
-      <th>Trackingid</th>
+      <th>Tracking Id</th>
       <th>Status</th>
 
       <th></th>
@@ -12,7 +12,7 @@
   <tbody>
 <%= for cargo <- @cargoes do %>
     <tr>
-      <td><%= cargo.trackingId %></td>
+      <td><%= cargo.tracking_id %></td>
       <td><%= cargo.status %></td>
 
       <td class="text-right">

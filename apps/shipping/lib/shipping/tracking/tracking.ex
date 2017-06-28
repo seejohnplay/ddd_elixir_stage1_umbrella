@@ -44,14 +44,14 @@ defmodule Shipping.Tracking do
 
   ## Examples
 
-      iex> get_cargo_by_trackingId!(123)
+      iex> get_cargo_by_tracking_id!(123)
       %Cargo{}
 
-      iex> get_cargo_by_trackingId!(456)
+      iex> get_cargo_by_tracking_id!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_cargo_by_trackingId!(trackingId), do: Repo.get_by_trackingId!(Cargo, trackingId)
+  def get_cargo_by_tracking_id!(tracking_id), do: Repo.get_by_tracking_id!(Cargo, tracking_id)
 
   @doc """
   Creates a cargo.
@@ -140,14 +140,14 @@ defmodule Shipping.Tracking do
 
   ## Examples
 
-      iex> get_handling_event_by_trackingId!(123)
+      iex> get_handling_event_by_tracking_id!(123)
       [%HandlingEvent{}]
 
-      iex> get_handling_event_by_trackingId!(456)
+      iex> get_handling_event_by_tracking_id!(456)
       ** (Ecto.NoResultsError)
 
   """
-  def get_handling_events_by_trackingId!(trackingId), do: Repo.get_by_trackingId!(HandlingEvent, trackingId)
+  def get_handling_events_by_tracking_id!(tracking_id), do: Repo.get_by_tracking_id!(HandlingEvent, tracking_id)
 
   @doc """
   Gets a single handling_event.

@@ -3,9 +3,9 @@ defmodule Shipping.Web.Tracking.CargoControllerTest do
 
   alias Shipping.Tracking
 
-  @create_attrs %{status: "some status", trackingId: "some trackingId"}
-  @update_attrs %{status: "some updated status", trackingId: "some updated trackingId"}
-  @invalid_attrs %{status: nil, trackingId: nil}
+  @create_attrs %{status: "some status", tracking_id: "some tracking_id"}
+  @update_attrs %{status: "some updated status", tracking_id: "some updated tracking_id"}
+  @invalid_attrs %{status: nil, tracking_id: nil}
 
   def fixture(:cargo) do
     {:ok, cargo} = Tracking.create_cargo(@create_attrs)

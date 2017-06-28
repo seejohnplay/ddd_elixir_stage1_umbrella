@@ -3,7 +3,7 @@ defmodule Shipping.Repo.Migrations.CreateCargoes do
 
   def change do
     create table(:cargoes) do
-      add :trackingId, :string
+      add :tracking_id, :string
       add :status, :string
 
       timestamps()

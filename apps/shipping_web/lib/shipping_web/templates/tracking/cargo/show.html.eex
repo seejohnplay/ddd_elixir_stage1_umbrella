@@ -3,8 +3,8 @@
 <ul>
 
   <li>
-    <strong>Trackingid:</strong>
-    <%= @cargo.trackingId %>
+    <strong>Tracking Id:</strong>
+    <%= @cargo.tracking_id %>
   </li>
 
   <li>

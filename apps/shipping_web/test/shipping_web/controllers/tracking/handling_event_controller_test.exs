@@ -3,9 +3,9 @@ defmodule Shipping.Web.Tracking.HandlingEventControllerTest do
 
   alias Shipping.Tracking
 
-  @create_attrs %{cargoId: "some cargoId", completionTime: "some completionTime", locationId: "some locationId", registrationTime: "some registrationTime", type: "some type"}
-  @update_attrs %{cargoId: "some updated cargoId", completionTime: "some updated completionTime", locationId: "some updated locationId", registrationTime: "some updated registrationTime", type: "some updated type"}
-  @invalid_attrs %{cargoId: nil, completionTime: nil, locationId: nil, registrationTime: nil, type: nil}
+  @create_attrs %{cargo_id: "some cargo_id", completion_time: "some completion_time", cargo_id: "some cargo_id", registration_time: "some registration_time", type: "some type"}
+  @update_attrs %{cargo_id: "some updated cargo_id", completion_time: "some updated completion_time", cargo_id: "some updated cargo_id", registration_time: "some updated registration_time", type: "some updated type"}
+  @invalid_attrs %{cargo_id: nil, completion_time: nil, cargo_id: nil, registration_time: nil, type: nil}
 
   def fixture(:handling_event) do
     {:ok, handling_event} = Tracking.create_handling_event(@create_attrs)
@@ -49,7 +49,7 @@ defmodule Shipping.Web.Tracking.HandlingEventControllerTest do
     assert redirected_to(conn) == tracking_handling_event_path(conn, :show, handling_event)
 
     conn = get conn, tracking_handling_event_path(conn, :show, handling_event)
-    assert html_response(conn, 200) =~ "some updated cargoId"
+    assert html_response(conn, 200) =~ "some updated cargo_id"
   end
 
   test "does not update chosen handling_event and renders errors when data is invalid", %{conn: conn} do
