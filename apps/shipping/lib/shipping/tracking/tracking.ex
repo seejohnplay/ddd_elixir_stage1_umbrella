@@ -38,6 +38,22 @@ defmodule Shipping.Tracking do
   def get_cargo!(id), do: Repo.get!(Cargo, id)
 
   @doc """
+  Gets a cargo by its tracking id.
+
+  Raises `Ecto.NoResultsError` if the Cargo does not exist.
+
+  ## Examples
+
+      iex> get_cargo_by_trackingId!(123)
+      %Cargo{}
+
+      iex> get_cargo_by_trackingId!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_cargo_by_trackingId!(trackingId), do: Repo.get_by_trackingId!(Cargo, trackingId)
+
+  @doc """
   Creates a cargo.
 
   ## Examples
@@ -116,6 +132,22 @@ defmodule Shipping.Tracking do
   def list_handling_events do
     Repo.all(HandlingEvent)
   end
+
+  @doc """
+  Gets all handling events for a tracking id.
+
+  Raises `Ecto.NoResultsError` if the Handling event does not exist.
+
+  ## Examples
+
+      iex> get_handling_event_by_trackingId!(123)
+      [%HandlingEvent{}]
+
+      iex> get_handling_event_by_trackingId!(456)
+      ** (Ecto.NoResultsError)
+
+  """
+  def get_handling_events_by_trackingId!(trackingId), do: Repo.get_by_trackingId!(HandlingEvent, trackingId)
 
   @doc """
   Gets a single handling_event.
