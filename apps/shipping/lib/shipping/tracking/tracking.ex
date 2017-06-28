@@ -146,7 +146,7 @@ defmodule Shipping.Tracking do
 
   """
   def create_handling_event(attrs \\ %{}) do
-    %HandlingEvent{}
+    HandlingEvent.new()
     |> HandlingEvent.changeset(attrs)
     |> Repo.insert()
   end
