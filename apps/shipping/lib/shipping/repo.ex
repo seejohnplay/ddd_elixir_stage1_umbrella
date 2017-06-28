@@ -55,12 +55,12 @@ defmodule Shipping.Repo do
     |> Enum.find(fn cargo -> cargo.id == id end)
   end
 
-  def get_by_trackingId(HandlingEvent, trackingId) do
+  def get_by_trackingId!(HandlingEvent, trackingId) do
     all(HandlingEvent)
     |> Enum.filter(fn handling_event -> handling_event.trackingId == trackingId end)
   end
 
-  def get_by_trackingId(Cargo, trackingId) do
+  def get_by_trackingId!(Cargo, trackingId) do
     all(Cargo)
     |> Enum.find(fn cargo -> cargo.trackingId == trackingId end)
   end
