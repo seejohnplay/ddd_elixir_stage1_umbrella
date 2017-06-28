@@ -15,6 +15,10 @@ defmodule Shipping.Tracking.HandlingEvent do
     timestamps()
   end
 
+  def new() do
+    %HandlingEvent{registrationTime: DateTime.utc_now()}
+  end
+
   @doc false
   def changeset(%HandlingEvent{} = handling_event, attrs) do
     handling_event
