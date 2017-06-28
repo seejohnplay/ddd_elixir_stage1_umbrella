@@ -27,6 +27,11 @@
     <%= @handling_event.trackingId %>
   </li>
 
+  <li>
+    <strong>Voyage:</strong>
+    <%= @handling_event.voyage %>
+  </li>
+
 </ul>
 
 <span><%= link "Edit", to: tracking_handling_event_path(@conn, :edit, @handling_event) %></span>

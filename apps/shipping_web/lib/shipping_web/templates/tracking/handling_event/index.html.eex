@@ -8,6 +8,7 @@
       <th>Completiontime</th>
       <th>Registrationtime</th>
       <th>TrackingId</th>
+      <th>Voyage</th>
 
       <th></th>
     </tr>
@@ -20,6 +21,7 @@
       <td><%= handling_event.completionTime %></td>
       <td><%= handling_event.registrationTime %></td>
       <td><%= handling_event.trackingId %></td>
+      <td><%= handling_event.voyage %></td>
 
       <td class="text-right">
         <span><%= link "Show", to: tracking_handling_event_path(@conn, :show, handling_event), class: "btn btn-default btn-xs" %></span>

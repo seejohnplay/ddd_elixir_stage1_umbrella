@@ -12,6 +12,12 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :voyage, class: "control-label" %>
+    <%= text_input f, :voyage, class: "form-control" %>
+    <%= error_tag f, :voyage %>
+  </div>
+
+  <div class="form-group">
     <%= label f, :completionTime, class: "control-label" %>
     <%= datetime_select f, :completionTime, class: "form-control" %>
     <%= error_tag f, :completionTime %>
