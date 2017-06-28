@@ -13,11 +13,11 @@ defmodule Shipping.Repo do
   def all(HandlingEvent) do
       [
         %HandlingEvent{id: 1, type: "RECEIVE", trackingId: "ABC123", location: "CHHKG",
-                completionTime: DateTime.from_iso8601("2017-06-20T23:00:00Z") },
+                completionTime: elem(DateTime.from_iso8601("2017-06-20T23:00:00Z"), 1) },
         %HandlingEvent{id: 2, type: "LOAD", trackingId: "ABC123", location: "CHHKG",
-                completionTime: DateTime.from_iso8601("2017-06-22T23:00:00Z") },
+                completionTime: elem(DateTime.from_iso8601("2017-06-22T23:00:00Z"), 1) },
         %HandlingEvent{id: 3, type: "UNLOAD", trackingId: "ABC123", location: "USNYC",
-                completionTime: DateTime.from_iso8601("2017-06-29T23:00:00Z") },
+                completionTime: elem(DateTime.from_iso8601("2017-06-29T23:00:00Z"), 1) },
       ]
   end
 
