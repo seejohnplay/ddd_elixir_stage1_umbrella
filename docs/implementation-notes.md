@@ -19,15 +19,15 @@ Skip these steps if you have retrieved the project from GitHub.
 3. mix deps.clean phoenix
 4. Edit the mix.exs file in apps/shipping_web. Change the phoenix dependency to the following:
 ~~~~
-{:phoenix, github: "phoenixframework/phoenix", override: true},  
+{:phoenix, github: "phoenixframework/phoenix", override: true},
 ~~~~
 this will ensure that you are using the master branch of the Phoenix repository.
 
 5. mix deps.get
 6. cd apps/shipping_web
 7. mix phx.gen.html Tracking Cargo cargoes id status --web Tracking
-8. mix phx.gen.html Tracking HandlingEvent handling_events type locationId completionTime registrationTime cargoId  --web Tracking    
-9. Edit apps/shipping_web/lib/shipping_web/router.ex and add the following scope after the existing scope:  
+8. mix phx.gen.html Tracking HandlingEvent handling_events type locationId completionTime registrationTime cargoId  --web Tracking
+9. Edit apps/shipping_web/lib/shipping_web/router.ex and add the following scope after the existing scope:
 ~~~~
 scope "/tracking", Shipping.Web.Tracking, as: :tracking do
   pipe_through :browser
@@ -45,9 +45,9 @@ end
 
 ### Running the web application
 1. cd ddd_elixir_stage1_umbrella
-2. phx.server
+2. mix phx.server
 
-### Using the web application  
+### Using the web application
 Two lists of hard-wired data for Cargoes and HandlingEvents are part of the Shipping.Repo.
 * [localhost:4000/tracking/cargoes](localhost:4000/tracking/cargoes) will list all of the hard-wired cargoes.
 * [localhost:4000/tracking/cargoes/1](localhost:4000/tracking/cargoes/1) will fetch the cargo with id equal to 1.
@@ -55,11 +55,11 @@ Two lists of hard-wired data for Cargoes and HandlingEvents are part of the Ship
 * [localhost:4000/tracking/handling_events/1](localhost:4000/tracking/handling_events/1) will fethc the handling event with id equal to 1.
 * No other operations are supported as of 25 Jun 2017
 
-## Observations on the Java Implementation    
+## Observations on the Java Implementation
 1. WebAPI requests. The following requests were noted while monitoring the network activity of the Java implementation's web pages. We will not need to address all of them, initially. And, of course, we can change them.
     1. Tracking
         1. GET dddsample/track
-        2. POST dddsample/track  
+        2. POST dddsample/track
         trackingId: ABC123
     2. Booking - List tracking Ids
         1. GET dddsample/admin/list
@@ -67,27 +67,27 @@ Two lists of hard-wired data for Cargoes and HandlingEvents are part of the Ship
         1. GET dddsample/admin/show?trackingId=ABC123
     4. Booking - Change Destination
         1. GET dddsample/admin/pickNewDestination?trackingId=ABC123
-        2. POST dddsample/admin/changeDestination  
-        trackingId: ABC123  
+        2. POST dddsample/admin/changeDestination
+        trackingId: ABC123
         unlocode: NLRTM
         3. GET dddsample/admin/selectItinerary?trackingId=ABC123
     5. Booking - Book New Cargo
         1. GET dddsample/admin/registration
-        2. POST dddsample/admin/register  
-        originUnlocode: JNTKO  
-        destinationUnlocode: CNHGH  
+        2. POST dddsample/admin/register
+        originUnlocode: JNTKO
+        destinationUnlocode: CNHGH
         arrivalDeadline: 15/06/2017
     6. Booking - Book New Cargo - Select and Assign Route
         1. GET dddsample/admin/selectItinerary?trackingId=E58FD969
-        2. POST dddsample/admin/assignItinerary  
-        trackingId: E58FD969  
-        legs[0].voyageNumber:0301S  
-        legs[0].fromUnLocode:JNTKO  
-        legs[0].toUnLocode:USNYC  
-        legs[0].fromDate:2017-06-17 09:47  
-        legs[0].toDate:2017-06-18 02:47  
-        legs[1].voyageNumber:0100S  
-        legs[1].fromUnLocode:USNYC  
-        legs[1].toUnLocode:CNHGH  
-        legs[1].fromDate:2017-06-21 02:59  
-        legs[1].toDate:2017-06-22 04:51  
+        2. POST dddsample/admin/assignItinerary
+        trackingId: E58FD969
+        legs[0].voyageNumber:0301S
+        legs[0].fromUnLocode:JNTKO
+        legs[0].toUnLocode:USNYC
+        legs[0].fromDate:2017-06-17 09:47
+        legs[0].toDate:2017-06-18 02:47
+        legs[1].voyageNumber:0100S
+        legs[1].fromUnLocode:USNYC
+        legs[1].toUnLocode:CNHGH
+        legs[1].fromDate:2017-06-21 02:59
+        legs[1].toDate:2017-06-22 04:51
