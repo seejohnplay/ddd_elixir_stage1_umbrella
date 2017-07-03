@@ -13,7 +13,7 @@ defmodule Shipping.Application do
     import Supervisor.Spec, warn: false
 
     Supervisor.start_link([
-      supervisor(Shipping.Repo, []),
+      supervisor(Shipping.HandlingEventAgent, []),
     ], strategy: :one_for_one, name: Shipping.Supervisor)
   end
 end

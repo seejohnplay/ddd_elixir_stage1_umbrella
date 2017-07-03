@@ -22,7 +22,7 @@ defmodule Shipping.Mixfile do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      # mod: {Shipping.Application, []},
+      mod: {Shipping.Application, []},
       extra_applications: [:logger, :runtime_tools]
     ]
   end

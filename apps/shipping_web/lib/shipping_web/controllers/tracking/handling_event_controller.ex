@@ -36,7 +36,9 @@ defmodule Shipping.Web.Tracking.HandlingEventController do
   def edit(conn, %{"id" => id}) do
     handling_event = Tracking.get_handling_event!(id)
     changeset = Tracking.change_handling_event(handling_event)
-    render(conn, "edit.html", handling_event: handling_event, changeset: changeset)
+    render(conn, "edit.html", handling_event: handling_event, changeset: changeset,
+                              location_map: Tracking.location_map(),
+                              handling_event_type_map: Tracking.handling_event_type_map())
   end
 
   def update(conn, %{"id" => id, "handling_event" => handling_event_params}) do
@@ -48,7 +50,9 @@ defmodule Shipping.Web.Tracking.HandlingEventController do
         |> put_flash(:info, "Handling event updated successfully.")
         |> redirect(to: tracking_handling_event_path(conn, :show, handling_event))
       {:error, %Ecto.Changeset{} = changeset} ->
-        render(conn, "edit.html", handling_event: handling_event, changeset: changeset)
+        render(conn, "edit.html", handling_event: handling_event, changeset: changeset,
+                                  location_map: Tracking.location_map(),
+                                  handling_event_type_map: Tracking.handling_event_type_map())
     end
   end
 

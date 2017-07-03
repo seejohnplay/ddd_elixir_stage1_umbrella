@@ -10,7 +10,7 @@
 
 Make sure you have the following installed:
 * elixir 1.4
-* phoenix 1.3 rc 2 __NOTA BENE:__ As of, 25 Jun 2017, the application requires the master branch of Phoenix. See below, in the building steps, on how to incorporate this version of Phoenix in the mix instructions (mix.exs).
+* phoenix 1.3 rc 2 __NOTA BENE:__ As of, 2 Jul 2017, the application requires the master branch of Phoenix. See below, in the building steps, on how to incorporate this version of Phoenix in the mix instructions (mix.exs).
 
 ### Generating this project.
 Skip these steps if you have retrieved the project from GitHub.
@@ -48,12 +48,15 @@ end
 2. mix phx.server
 
 ### Using the web application
-Two lists of hard-wired data for Cargoes and HandlingEvents are part of the Shipping.Repo.
+One list of hard-wired data for Cargoes is in Shipping.Repo.
 * [localhost:4000/tracking/cargoes](localhost:4000/tracking/cargoes) will list all of the hard-wired cargoes.
 * [localhost:4000/tracking/cargoes/1](localhost:4000/tracking/cargoes/1) will fetch the cargo with id equal to 1.
-* [localhost:4000/tracking/handling_events](localhost:4000/tracking/handling_events) will list all of the hard-wired handling events.
-* [localhost:4000/tracking/handling_events/1](localhost:4000/tracking/handling_events/1) will fethc the handling event with id equal to 1.
-* No other operations are supported as of 25 Jun 2017
+
+HandlingEvents are managed by an Elixir Agent. They are saved in the agent's state and in a file cache. The file is loaded by default  when this application is started. The file is named "handling_events.json" and is in the topmost directory. It can be deleted if you wish to start from scratch and it can be
+added to with any text editor so long as the id values are unique.
+* [localhost:4000/tracking/handling_events](localhost:4000/tracking/handling_events) will list all of the handling events stored in the agent's state.
+* [localhost:4000/tracking/handling_events/1](localhost:4000/tracking/handling_events/1) will fetch the handling event with id equal to 1.
+* No other operations - via web requests - are supported as of 2 July 2017
 
 ## Observations on the Java Implementation
 1. WebAPI requests. The following requests were noted while monitoring the network activity of the Java implementation's web pages. We will not need to address all of them, initially. And, of course, we can change them.

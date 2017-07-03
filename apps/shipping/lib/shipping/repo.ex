@@ -8,18 +8,18 @@ defmodule Shipping.Repo do
   # def init(_, opts) do
   #   {:ok, Keyword.put(opts, :url, System.get_env("DATABASE_URL"))}
   # end
-  alias Shipping.Tracking.{HandlingEvent, Cargo}
+  @moduledoc """
+  Normally the Repo module is responsible for the data storage and retrieval to
+  and from a database system. See the commented out code above.
+  However, Stage 1 of the Shipping example does not
+  use a database. Instead, data are handled by an Elixir Agent:
+  Shipping.HandlingEventAgent. This agent maintains a list of HandlingEvents both
+  in memory (the agent's state)
+  and in a file. See the Shipping.HandlingEventAgent for more detail.
 
-  def all(HandlingEvent) do
-      [
-        %HandlingEvent{id: 1, type: "RECEIVE", tracking_id: "ABC123", location: "CHHKG",
-                completion_time: elem(DateTime.from_iso8601("2017-06-20T23:00:00Z"), 1) },
-        %HandlingEvent{id: 2, type: "LOAD", tracking_id: "ABC123", location: "CHHKG",
-                completion_time: elem(DateTime.from_iso8601("2017-06-22T23:00:00Z"), 1) },
-        %HandlingEvent{id: 3, type: "UNLOAD", tracking_id: "ABC123", location: "USNYC",
-                completion_time: elem(DateTime.from_iso8601("2017-06-29T23:00:00Z"), 1) },
-      ]
-  end
+  """
+  alias Shipping.Tracking.{HandlingEvent, Cargo}
+  alias Shipping.HandlingEventAgent
 
   def all(Cargo) do
     [
@@ -28,11 +28,14 @@ defmodule Shipping.Repo do
     ]
   end
 
+  def all(HandlingEvent) do
+    HandlingEventAgent.all()
+  end
 
-  # TODO: Store the HandlingEvent in an Agent or to disk
-  def insert(%Ecto.Changeset{data: %HandlingEvent{} = handlingEvent} = changeset) do
+  def insert(changeset) do
     if changeset.valid? do
-      {:ok, %{changeset.data | id: 1}}  # TODO: should be incremented
+      data = Ecto.Changeset.apply_changes(changeset)
+      {:ok, HandlingEventAgent.add(data)}
     else
       {:error, %{changeset | action: :insert}}
     end
