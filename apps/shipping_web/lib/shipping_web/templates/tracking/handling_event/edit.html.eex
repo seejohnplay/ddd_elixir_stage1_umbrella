@@ -1,6 +1,8 @@
 <h2>Edit Handling event</h2>
 
 <%= render "form.html", changeset: @changeset,
+                        location_map: @location_map,
+                        handling_event_type_map: @handling_event_type_map,
                         action: tracking_handling_event_path(@conn, :update, @handling_event) %>
 
 <span><%= link "Back", to: tracking_handling_event_path(@conn, :index) %></span>

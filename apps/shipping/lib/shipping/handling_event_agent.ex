@@ -32,8 +32,15 @@ defmodule Shipping.HandlingEventAgent do
           event
             |> String.trim_trailing("\n")
             |> Poison.decode!(as: %HandlingEvent{})
+            |> convert_date(:completion_time)
+            |> convert_date(:registration_time)
         load_from_cache(cache, {[event_struct | events], event_struct.id})
     end
+  end
+
+  defp convert_date(event, field) do
+    {:ok, converted_date, _} = DateTime.from_iso8601(Map.get(event, field))
+    Map.put(event, field, converted_date)
   end
 
   @doc """
