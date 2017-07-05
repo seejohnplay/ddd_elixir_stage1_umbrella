@@ -26,7 +26,8 @@ defmodule Shipping.Web.Tracking.CargoController do
 
   def show(conn, %{"id" => id}) do
     cargo = Tracking.get_cargo!(id)
-    render(conn, "show.html", cargo: cargo)
+    handling_events = Tracking.get_handling_events_by_tracking_id!(cargo.tracking_id)
+    render(conn, "show.html", cargo: cargo, handling_events: handling_events)
   end
 
   def edit(conn, %{"id" => id}) do

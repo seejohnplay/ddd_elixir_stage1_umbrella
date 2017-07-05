@@ -27,12 +27,12 @@ form.link, form.button {
   border-bottom: 1px solid #e5e5e5;
 }
 .logo {
-  width: 519px;
-  height: 71px;
+  width: 257px;
+  height: 88px;
   display: inline-block;
   margin-bottom: 1em;
-  background-image: url("/images/phoenix.png");
-  background-size: 519px 71px;
+  background-image: url("/images/ddd_logo.png");
+  background-size: 257px 88px;
 }
 
 /* Everything but the jumbotron gets side spacing for mobile first views */
@@ -61,6 +61,12 @@ form.link, form.button {
 /* Supporting marketing content */
 .marketing {
   margin: 35px 0;
+}
+
+/* Custom Styles */
+
+#shipment-progress {
+  margin: 0px;
 }
 
 /* Responsive: Portrait tablets and up */

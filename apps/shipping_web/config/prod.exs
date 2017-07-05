@@ -15,8 +15,10 @@ use Mix.Config
 # which you typically run after static files are built.
 config :shipping_web, Shipping.Web.Endpoint,
   load_from_system_env: true,
-  url: [host: "example.com", port: 80],
-  cache_static_manifest: "priv/static/cache_manifest.json"
+  url: [scheme: "https", host: "ddd-elixir.herokuapp.com", port: 443],
+  force_ssl: [rewrite_on: [:x_forwarded_proto]],
+  cache_static_manifest: "priv/static/cache_manifest.json",
+  secret_key_base: System.get_env("SECRET_KEY_BASE")
 
 # ## SSL Support
 #
@@ -58,4 +60,5 @@ config :shipping_web, Shipping.Web.Endpoint,
 
 # Finally import the config/prod.secret.exs
 # which should be versioned separately.
-import_config "prod.secret.exs"
+# TODO: Commented out the follow line for Heroku deployment
+# import_config "prod.secret.exs"
