@@ -1,3 +1,3 @@
-{"voyage":"989","updated_at":null,"type":"RECEIVE","tracking_id":"ABC123","registration_time":"2017-07-03T18:56:24.431818Z","location":"USNYC","inserted_at":null,"id":1,"completion_time":"2017-06-01T11:00:00Z"}
-{"voyage":"989","updated_at":null,"type":"LOAD","tracking_id":"ABC123","registration_time":"2017-07-04T21:07:50.694321Z","location":"USNYC","inserted_at":null,"id":2,"completion_time":"2012-01-01T00:00:00Z"}
-{"voyage":"989","updated_at":null,"type":"UNLOAD","tracking_id":"ABC123","registration_time":"2017-07-06T20:37:32.324000Z","location":"NLRTM","inserted_at":null,"id":3,"completion_time":"2017-06-07T00:00:00Z"}
+{"voyage":"989","updated_at":null,"type":"UNLOAD","tracking_id":"ABC123","registration_time":"2017-07-06T21:16:52.200000Z","location":"NLRTM","inserted_at":null,"id":3,"completion_time":"2012-06-06T00:00:00Z"}
+{"voyage":"989","updated_at":null,"type":"LOAD","tracking_id":"ABC123","registration_time":"2017-07-06T21:16:10.581000Z","location":"USNYC","inserted_at":null,"id":2,"completion_time":"2017-06-02T07:10:00Z"}
+{"voyage":"989","updated_at":null,"type":"RECEIVE","tracking_id":"ABC123","registration_time":"2017-07-06T21:15:20.591000Z","location":"USNYC","inserted_at":null,"id":1,"completion_time":"2017-06-01T00:00:00Z"}

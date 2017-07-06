@@ -9,6 +9,8 @@ defmodule Shipping.HandlingEventAgent do
   new handling event is inserted. The backing store data is stored in
   JSON format.
   """
+  @cache_file_path "handling_events.json"
+
   defstruct [events: [], last_event_id: 0, cache: nil]
 
   alias Shipping.Tracking.HandlingEvent
@@ -19,7 +21,7 @@ defmodule Shipping.HandlingEventAgent do
   become part of the Agent's state.
   """
   def start_link do
-    {:ok, cache} = File.open("handling_events.json", [:append, :read])
+    {:ok, cache} = File.open(@cache_file_path, [:append, :read])
     {events, last_event_id} = load_from_cache(cache, {[], 0})
     Agent.start_link(fn -> %__MODULE__{cache: cache, events: events, last_event_id: last_event_id} end, name: __MODULE__)
   end
@@ -41,6 +43,18 @@ defmodule Shipping.HandlingEventAgent do
   defp convert_date(event, field) do
     {:ok, converted_date, _} = DateTime.from_iso8601(Map.get(event, field))
     Map.put(event, field, converted_date)
+  end
+
+  defp dump_to_cache() do
+    cache = Agent.get(__MODULE__, fn(struct) -> struct.cache end)
+    File.close(cache)
+    File.rm(@cache_file_path)
+    {:ok, new_cache} = File.open(@cache_file_path, [:append, :read])
+    all()
+      |> Enum.map(
+          fn(event) -> IO.write(new_cache, to_json(event) <> "\n")
+          end)
+    Agent.update(__MODULE__, fn(struct) -> %{struct | cache: new_cache} end)
   end
 
   @doc """
@@ -91,6 +105,7 @@ defmodule Shipping.HandlingEventAgent do
         fn(struct) ->
           %{struct | events: new_event_list}
         end)
+    dump_to_cache()
     updated_event
   end
 
