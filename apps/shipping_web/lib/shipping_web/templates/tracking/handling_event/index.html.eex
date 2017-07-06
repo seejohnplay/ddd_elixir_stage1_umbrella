@@ -1,4 +1,4 @@
-<h2>Listing Handling events</h2>
+<h2>Listing Handling Events</h2>
 
 <table class="table">
   <thead>
@@ -33,4 +33,4 @@
   </tbody>
 </table>
 
-<span><%= link "New Handling event", to: tracking_handling_event_path(@conn, :new) %></span>
+<span><%= link "New Handling Event", to: tracking_handling_event_path(@conn, :new) %></span>

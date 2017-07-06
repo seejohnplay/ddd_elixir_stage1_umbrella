@@ -28,10 +28,16 @@ defmodule Shipping.Repo do
     ]
   end
 
+  @doc """
+  Retrieve all of the Handling Events from the Handling Event Agent.
+  """
   def all(HandlingEvent) do
     HandlingEventAgent.all()
   end
 
+  @doc """
+  Use the Handling Event Agent to insert a new Handling Event.
+  """
   def insert(changeset) do
     if changeset.valid? do
       data = Ecto.Changeset.apply_changes(changeset)
@@ -66,5 +72,17 @@ defmodule Shipping.Repo do
   def get_by_tracking_id!(Cargo, tracking_id) do
     all(Cargo)
     |> Enum.find(fn cargo -> cargo.tracking_id == tracking_id end)
+  end
+
+  @doc """
+  Update a Handling Event using the Handling Event Agent.
+  """
+  def update(%{data: %HandlingEvent{}} = changeset) do
+    if changeset.valid? do
+      handling_event = Ecto.Changeset.apply_changes(changeset)
+      {:ok, HandlingEventAgent.update(handling_event)}
+    else
+      {:error, %{changeset | action: :update}}
+    end
   end
 end

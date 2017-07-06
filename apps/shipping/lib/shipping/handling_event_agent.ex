@@ -16,7 +16,7 @@ defmodule Shipping.HandlingEventAgent do
   @doc """
   Before starting the Agent process, start_link first loads any Handling Events
   that might be stored in the file cache ("handling_events.json"). Any events
-  become part of Agent's state.
+  become part of the Agent's state.
   """
   def start_link do
     {:ok, cache} = File.open("handling_events.json", [:append, :read])
@@ -70,6 +70,28 @@ defmodule Shipping.HandlingEventAgent do
   defp to_json(event) do
     # Remove Ecto field before encoding
     event |> Map.delete(:__meta__) |> Poison.encode!
+  end
+
+  @doc """
+  Update an existing Handling Event. Matching is done using
+  the Handling Event id value.
+  """
+  def update(%HandlingEvent{} = updated_event) do
+    new_event_list =
+      all()
+      |> Enum.map(
+          fn(event) ->
+            if event.id == updated_event.id do
+              updated_event
+            else
+              event
+            end
+          end)
+    Agent.update(__MODULE__,
+        fn(struct) ->
+          %{struct | events: new_event_list}
+        end)
+    updated_event
   end
 
   def next_id() do
