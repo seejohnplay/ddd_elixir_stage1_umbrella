@@ -56,7 +56,8 @@ HandlingEvents are managed by an Elixir Agent. They are saved in the agent's sta
 added to with any text editor so long as the id values are unique.
 * [localhost:4000/tracking/handling_events](localhost:4000/tracking/handling_events) will list all of the handling events stored in the agent's state.
 * [localhost:4000/tracking/handling_events/1](localhost:4000/tracking/handling_events/1) will fetch the handling event with id equal to 1.
-* No other operations - via web requests - are supported as of 2 July 2017
+* Handling events can be edited via a web page.
+* Deletion is not supported as of 6 July 2017
 
 ## Observations on the Java Implementation
 1. WebAPI requests. The following requests were noted while monitoring the network activity of the Java implementation's web pages. We will not need to address all of them, initially. And, of course, we can change them.
