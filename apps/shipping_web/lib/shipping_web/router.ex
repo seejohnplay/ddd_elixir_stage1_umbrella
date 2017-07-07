@@ -17,12 +17,13 @@ defmodule Shipping.Web.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+    post "/", PageController, :search
   end
 
   scope "/tracking", Shipping.Web.Tracking, as: :tracking do
     pipe_through :browser
 
-    resources "/cargoes", CargoController
+    resources "/cargoes", CargoController, param: "tracking_id"
     resources "/handling_events", HandlingEventController
   end
 

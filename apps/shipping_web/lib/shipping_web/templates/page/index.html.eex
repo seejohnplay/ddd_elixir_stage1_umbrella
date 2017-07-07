@@ -1,10 +1,12 @@
 <div class="jumbotron">
-   <div class="input-group">
-      <input type="text" class="form-control" placeholder="Tracking Number (e.g. ABC123)">
+  <%= form_for @conn, page_path(@conn, :search), [name: :search], fn f -> %>
+    <div class="input-group">
+      <%= text_input f, :tracking_id, placeholder: "Tracking Number (e.g. ABC123, IJK456)", class: "form-control" %>
       <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Track!</button>
+        <%= submit "Track!", class: "btn btn-default" %>
       </span>
     </div>
+  <% end %>
 </div>
 
 <div class="row marketing">

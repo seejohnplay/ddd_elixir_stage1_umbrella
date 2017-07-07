@@ -3,7 +3,7 @@ defmodule Shipping.Tracking.Cargo do
   import Ecto.Changeset
   alias Shipping.Tracking.Cargo
 
-
+  @derive {Phoenix.Param, key: :tracking_id}
   schema "cargoes" do
     field :status, :string
     field :tracking_id, :string

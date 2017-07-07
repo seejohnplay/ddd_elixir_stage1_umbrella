@@ -24,20 +24,26 @@ defmodule Shipping.Web.Tracking.CargoController do
     end
   end
 
-  def show(conn, %{"id" => id}) do
-    cargo = Tracking.get_cargo!(id)
-    handling_events = Tracking.get_handling_events_by_tracking_id!(cargo.tracking_id)
-    render(conn, "show.html", cargo: cargo, handling_events: handling_events)
+  def show(conn, %{"tracking_id" => tracking_id}) do
+    case cargo = Tracking.get_cargo_by_tracking_id!(tracking_id) do
+      %Shipping.Tracking.Cargo{} ->
+        handling_events = Tracking.get_handling_events_by_tracking_id!(cargo.tracking_id)
+        render(conn, "show.html", cargo: cargo, handling_events: handling_events)
+      _ ->
+        conn
+        |> put_flash(:error, "Invalid tracking number")
+        |> redirect(to: page_path(conn, :index))
+    end
   end
 
-  def edit(conn, %{"id" => id}) do
-    cargo = Tracking.get_cargo!(id)
+  def edit(conn, %{"tracking_id" => tracking_id}) do
+    cargo = Tracking.get_cargo_by_tracking_id!(tracking_id)
     changeset = Tracking.change_cargo(cargo)
     render(conn, "edit.html", cargo: cargo, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "cargo" => cargo_params}) do
-    cargo = Tracking.get_cargo!(id)
+  def update(conn, %{"tracking_id" => tracking_id, "cargo" => cargo_params}) do
+    cargo = Tracking.get_cargo_by_tracking_id!(tracking_id)
 
     case Tracking.update_cargo(cargo, cargo_params) do
       {:ok, cargo} ->
@@ -49,8 +55,8 @@ defmodule Shipping.Web.Tracking.CargoController do
     end
   end
 
-  def delete(conn, %{"id" => id}) do
-    cargo = Tracking.get_cargo!(id)
+  def delete(conn, %{"tracking_id" => tracking_id}) do
+    cargo = Tracking.get_cargo_by_tracking_id!(tracking_id)
     {:ok, _cargo} = Tracking.delete_cargo(cargo)
 
     conn
