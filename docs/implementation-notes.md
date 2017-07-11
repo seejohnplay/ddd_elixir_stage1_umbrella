@@ -25,8 +25,8 @@ this will ensure that you are using the master branch of the Phoenix repository.
 
 5. mix deps.get
 6. cd apps/shipping_web
-7. mix phx.gen.html Tracking Cargo cargoes id status --web Tracking
-8. mix phx.gen.html Tracking HandlingEvent handling_events type cargo_id completion_time registration_time cargo_id  --web Tracking
+7. mix phx.gen.html Tracking Cargo cargoes tracking_id status --web Tracking
+8. mix phx.gen.html Tracking HandlingEvent handling_events type voyage location tracking_id completion_time registration_time --web Tracking
 9. Edit apps/shipping_web/lib/shipping_web/router.ex and add the following scope after the existing scope:
 ~~~~
 scope "/tracking", Shipping.Web.Tracking, as: :tracking do
