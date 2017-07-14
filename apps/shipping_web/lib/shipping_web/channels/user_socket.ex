@@ -2,7 +2,7 @@ defmodule Shipping.Web.UserSocket do
   use Phoenix.Socket
 
   ## Channels
-  # channel "room:*", Shipping.Web.RoomChannel
+  channel "tracking:*", Shipping.Web.TrackingChannel
 
   ## Transports
   transport :websocket, Phoenix.Transports.WebSocket, timeout: 45_000

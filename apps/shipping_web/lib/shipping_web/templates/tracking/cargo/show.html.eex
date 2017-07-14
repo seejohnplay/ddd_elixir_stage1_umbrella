@@ -1,4 +1,8 @@
-<h2>Tracking Details</h2>
+<h2>
+  Tracking Details
+  <span class="btn btn-default pull-right" id="next-event">Next event</span>
+</h2>
+
 
 <div class="panel panel-primary">
   <div class="panel-heading">
@@ -7,7 +11,7 @@
       <span class="glyphicon glyphicon-circle-arrow-right" aria-hidden="true"></span>
     </h3>
   </div>
-  <div class="panel-body">
+  <div class="panel-body" id="tracking-info" tracking-id="<%= @cargo.tracking_id %>">
     <div class="pull-left">
       <p>
         <u><strong>Tracking #:</strong></u>
@@ -18,7 +22,7 @@
     <div class="pull-right">
       <p>
         <u><strong>Status:</strong></u>
-        <%= @cargo.status %>
+        <span id="cargo-status"></span>
       </p>
     </div>
   </div>
@@ -33,21 +37,14 @@
       <table id="shipment-progress" class="table table-striped">
         <thead>
           <tr class="warning">
+            <th>Voyage</th>
             <th>Location</th>
             <th>Date</th>
             <th>Local Time</th>
             <th>Type</th>
           </tr>
         </thead>
-        <tbody>
-          <%= for handling_event <- @handling_events do %>
-            <tr>
-              <td><%= handling_event.location %></td>
-              <td><%= DateTime.to_date(handling_event.completion_time) %></td>
-              <td><%= DateTime.to_time(handling_event.completion_time) %></td>
-              <td><%= handling_event.type %></td>
-            </tr>
-          <%= end %>
+        <tbody id="handling-events">
         </tbody>
       </table>
     <% else %>

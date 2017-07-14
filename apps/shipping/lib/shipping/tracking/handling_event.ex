@@ -23,6 +23,6 @@ defmodule Shipping.Tracking.HandlingEvent do
   def changeset(%HandlingEvent{} = handling_event, attrs) do
     handling_event
     |> cast(attrs, [:type, :location, :completion_time, :registration_time, :tracking_id, :voyage])
-    |> validate_required([:type, :location, :completion_time, :registration_time, :tracking_id, :voyage])
+    |> validate_required([:type, :location, :completion_time, :registration_time, :tracking_id])
   end
 end
