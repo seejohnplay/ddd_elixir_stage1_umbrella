@@ -25,4 +25,21 @@ defmodule Shipping.Web.TrackingChannel do
 
     {:reply, :ok, assign(socket, :handling_events, events)}
   end
+
+  def broadcast_new_handling_event(handling_event) do
+    Shipping.Web.Endpoint.broadcast(
+      "tracking:#{handling_event.tracking_id}",
+      "new_handling_event",
+      to_map(handling_event))
+  end
+
+  defp to_map(handling_event) do
+    %{
+      voyage: handling_event.voyage,
+      location: handling_event.location,
+      date: DateTime.to_date(handling_event.completion_time),
+      time: DateTime.to_time(handling_event.completion_time),
+      type: handling_event.type
+    }
+  end
 end

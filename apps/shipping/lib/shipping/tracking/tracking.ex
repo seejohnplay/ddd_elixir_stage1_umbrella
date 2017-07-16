@@ -147,7 +147,9 @@ defmodule Shipping.Tracking do
       ** (Ecto.NoResultsError)
 
   """
-  def get_handling_events_by_tracking_id!(tracking_id), do: Repo.get_by_tracking_id!(HandlingEvent, tracking_id)
+  def get_handling_events_by_tracking_id!(tracking_id) do
+    Repo.get_by_tracking_id!(HandlingEvent, tracking_id)
+  end
 
   @doc """
   Gets a single handling_event.
@@ -261,7 +263,7 @@ defmodule Shipping.Tracking do
     "Unload": "UNLOAD",
     "Receive": "RECEIVE",
     "Claim": "CLAIM",
-    "Cutsoms": "CUSTOMS"
+    "Customs": "CUSTOMS"
   }
 
   def handling_event_type_map do

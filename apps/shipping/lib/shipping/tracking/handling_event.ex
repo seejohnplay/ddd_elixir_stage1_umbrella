@@ -10,7 +10,7 @@ defmodule Shipping.Tracking.HandlingEvent do
     field :registration_time, :utc_datetime
     field :tracking_id, :string
     field :type, :string
-    field :voyage, :string
+    field :voyage, :string, default: ""
 
     timestamps()
   end
