@@ -48,9 +48,14 @@ end
 2. mix phx.server
 
 ### Using the web application
-One list of hard-wired data for Cargoes is in Shipping.Repo.
-* [localhost:4000/tracking/cargoes](localhost:4000/tracking/cargoes) will list all of the hard-wired cargoes.
-* [localhost:4000/tracking/cargoes/1](localhost:4000/tracking/cargoes/1) will fetch the cargo with id equal to 1.
+The application is configured to be run by users in two roles: Customers and Cargo Handlers. For an effective demonstration, open two browser windows, one for each type of user.
+
+In the Customer's window enter: [localhost:4000](localhost:4000). Enter 'ABC123' as a tracking number. The response will be a history of the Handling Events for this particular cargo.
+
+In the Handler's window enter: [localhost:4000/tracking/handling_events](localhost:4000/tracking/handling_events). A list of Handling Events will appear. At the bottom of the page, click on the New Handling Event link. Enter data for a new event making sure you use the same tracking number: 'ABC123' When this new event is submitted, it will appear in this page's list of events and appear in the Customer's list of events.
+
+
+There are two hard-wired Cargoes; they can be seen via the link  [localhost:4000/tracking/cargoes](localhost:4000/tracking/cargoes).
 
 HandlingEvents are managed by an Elixir Agent. They are saved in the agent's state and in a file cache. The file is loaded by default  when this application is started. The file is named "handling_events.json" and is in the topmost directory. It can be deleted if you wish to start from scratch and it can be
 added to with any text editor so long as the id values are unique.
