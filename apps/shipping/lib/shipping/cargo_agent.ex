@@ -26,6 +26,7 @@ defmodule Shipping.CargoAgent do
     Agent.start_link(fn -> %__MODULE__{cache: cache, cargoes: cargoes, last_cargo_id: last_cargo_id} end, name: __MODULE__)
   end
 
+  # Reset the cargo status to "BOOKING"
   defp load_from_cache(cache, {cargoes, last_cargo_id} = acc) do
     case IO.read(cache, :line) do
       :eof -> acc
@@ -34,6 +35,7 @@ defmodule Shipping.CargoAgent do
           cargo
             |> String.trim_trailing("\n")
             |> Poison.decode!(as: %Cargo{})
+            |> Map.put(:status, "BOOKED")
         load_from_cache(cache, {[cargo_struct | cargoes], cargo_struct.id})
     end
   end
