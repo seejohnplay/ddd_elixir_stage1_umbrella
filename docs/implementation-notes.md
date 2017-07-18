@@ -54,13 +54,12 @@ In the Customer's window enter: [localhost:4000](localhost:4000). Enter 'ABC123'
 
 In the Handler's window enter: [localhost:4000/tracking/handling_events](localhost:4000/tracking/handling_events). A list of Handling Events will appear. At the bottom of the page, click on the New Handling Event link. Enter data for a new event making sure you use the same tracking number: 'ABC123' When this new event is submitted, it will appear in this page's list of events and appear in the Customer's list of events.
 
+Cargoes and HandlingEvents are managed by Elixir Agents. They are saved in their respective agent's state and in a file cache. The files are loaded by default  when this application is started. The files are named "cargoes.json" and "handling_events.json", respectively,
+and are in the topmost directory. Entries in these files can be deleted if you wish to start from scratch and they can be
+added to with any text editor so long as the id values are unique. Note that the starting status for a new Cargo is "BOOKED".
 
-There are two hard-wired Cargoes; they can be seen via the link  [localhost:4000/tracking/cargoes](localhost:4000/tracking/cargoes).
-
-HandlingEvents are managed by an Elixir Agent. They are saved in the agent's state and in a file cache. The file is loaded by default  when this application is started. The file is named "handling_events.json" and is in the topmost directory. It can be deleted if you wish to start from scratch and it can be
-added to with any text editor so long as the id values are unique.
-* [localhost:4000/tracking/handling_events](localhost:4000/tracking/handling_events) will list all of the handling events stored in the agent's state.
-* [localhost:4000/tracking/handling_events/1](localhost:4000/tracking/handling_events/1) will fetch the handling event with id equal to 1.
+* [localhost:4000/tracking/handling_events](localhost:4000/tracking/handling_events) will list all of the handling events stored in its agent's state.
+* [localhost:4000/tracking/cargoes](localhost:4000/tracking/cargoes) will list all of the cargoes stored in its agent's state.
 * Handling events can be edited via a web page.
 * Deletion is not supported as of 6 July 2017
 

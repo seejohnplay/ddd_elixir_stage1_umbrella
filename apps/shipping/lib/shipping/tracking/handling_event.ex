@@ -15,6 +15,10 @@ defmodule Shipping.Tracking.HandlingEvent do
     timestamps()
   end
 
+  @doc """
+  Create a new HandlingEvent, initializing the registration_time to be the
+  creation time (now).
+  """
   def new() do
     %HandlingEvent{registration_time: DateTime.utc_now()}
   end

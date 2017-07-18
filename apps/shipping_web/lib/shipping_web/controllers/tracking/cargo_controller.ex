@@ -27,8 +27,15 @@ defmodule Shipping.Web.Tracking.CargoController do
   def show(conn, %{"tracking_id" => tracking_id}) do
     case cargo = Tracking.get_cargo_by_tracking_id!(tracking_id) do
       %Shipping.Tracking.Cargo{} ->
-        handling_events = Tracking.get_handling_events_by_tracking_id!(cargo.tracking_id)
-        render(conn, "show.html", cargo: cargo, handling_events: handling_events)
+        # Retrieve and apply all handling events to date against the cargo so as
+        # to determine the cargo's current status.  Apply oldest events first.
+        # The cargo is updated. The tracking status (:on_track, :off_track)
+        # is ignored for now.
+        handling_events =
+          Tracking.get_handling_events_by_tracking_id!(cargo.tracking_id)
+        {tracking_status, updated_cargo} =
+          Tracking.update_cargo_status(Enum.reverse(handling_events), cargo)
+        render(conn, "show.html", cargo: updated_cargo, handling_events: handling_events)
       _ ->
         conn
         |> put_flash(:error, "Invalid tracking number")

@@ -35,25 +35,30 @@ class Tracking {
         `
         // Prepend the new handling event to the existing list
         eventContainer.insertBefore(template, eventContainer.firstChild)
-
-        // Highlight the new event and then fade away...
-        template.style.backgroundColor = 'hsl(' + H_E_COLOR + ', 100%, 70%)';
-        var d = 1000;
-        for (var i=70; i <= 100; i += 0.1) {
-          d += 10;
-          (function(ii, dd) {
-            setTimeout(function(){
-              var next_color = 'hsl(' + H_E_COLOR + ', 100%, ' + ii + '%)';
-              template.style.background = next_color
-            }, dd);
-          })(i, d);
-        }
-
+        Tracking.highlight_and_fade(template);
+      });
+      // Listen for a new_cargo_status message. The payload contains the new
+      // cargo status as a string.
+      channel.on("new_cargo_status", cargo_status => {
         let cargoStatusContainer = document.getElementById("cargo-status")
-
-        cargoStatusContainer.innerHTML =
-            handling_event.type === "LOAD" ? "ON BOARD" : "IN PORT"
+        cargoStatusContainer.innerHTML = cargo_status.status
+        Tracking.highlight_and_fade(cargoStatusContainer);
       })
+    }
+  }
+
+  static highlight_and_fade(element) {
+    // Highlight the new event and then fade away...
+    element.style.backgroundColor = 'hsl(' + H_E_COLOR + ', 100%, 70%)';
+    var d = 1000;
+    for (var i=70; i <= 100; i += 0.1) {
+      d += 10;
+      (function(ii, dd) {
+        setTimeout(function(){
+          var next_color = 'hsl(' + H_E_COLOR + ', 100%, ' + ii + '%)';
+          element.style.background = next_color
+        }, dd);
+      })(i, d);
     }
   }
 }

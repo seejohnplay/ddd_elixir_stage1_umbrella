@@ -15,6 +15,7 @@ defmodule Shipping.Application do
     Supervisor.start_link([
       # Start up a supervised HandlingEventAgent instead of a Repo
       supervisor(Shipping.HandlingEventAgent, []),
+      supervisor(Shipping.CargoAgent, []),
     ], strategy: :one_for_one, name: Shipping.Supervisor)
   end
 end

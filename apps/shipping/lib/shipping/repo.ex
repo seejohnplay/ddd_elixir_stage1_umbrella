@@ -12,20 +12,20 @@ defmodule Shipping.Repo do
   Normally the Repo module is responsible for the data storage and retrieval to
   and from a database system. See the commented out code above.
   However, Stage 1 of the Shipping example does not
-  use a database. Instead, data are handled by an Elixir Agent:
-  Shipping.HandlingEventAgent. This agent maintains a list of HandlingEvents both
-  in memory (the agent's state)
-  and in a file. See the Shipping.HandlingEventAgent for more detail.
+  use a database. Instead, data are handled by Elixir Agents:
+  Shipping.HandlingEventAgent and Shipping.CargoAgent. These agents maintains
+  a list of HandlingEvents and Cargoes in memory (the agent's state)
+  and in a file. See the agents for more detail.
 
   """
   alias Shipping.Tracking.{HandlingEvent, Cargo}
-  alias Shipping.HandlingEventAgent
+  alias Shipping.{HandlingEventAgent, CargoAgent}
 
+  @doc """
+  Retrieve all of the Cargoes from the Cargo Agent.
+  """
   def all(Cargo) do
-    [
-      %Cargo{id: 1, tracking_id: "ABC123", status: "IN PORT"},
-      %Cargo{id: 2, tracking_id: "IJK456", status: "ON CARRIER"}
-    ]
+    CargoAgent.all()
   end
 
   @doc """
@@ -81,6 +81,18 @@ defmodule Shipping.Repo do
     if changeset.valid? do
       handling_event = Ecto.Changeset.apply_changes(changeset)
       {:ok, HandlingEventAgent.update(handling_event)}
+    else
+      {:error, %{changeset | action: :update}}
+    end
+  end
+
+  @doc """
+  Update a Cargo entity.
+  """
+  def update(%{data: %Cargo{}} = changeset) do
+    if changeset.valid? do
+      cargo = Ecto.Changeset.apply_changes(changeset)
+      {:ok, CargoAgent.update(cargo)}
     else
       {:error, %{changeset | action: :update}}
     end
