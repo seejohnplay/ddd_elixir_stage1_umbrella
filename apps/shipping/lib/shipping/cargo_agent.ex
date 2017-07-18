@@ -9,7 +9,7 @@ defmodule Shipping.CargoAgent do
   when this Agent is started (start_link()). The backing store data is stored in
   JSON format.
   """
-  @cache_file_path "cargoes.json"
+  @cache_file_path "resources/cargoes.json"
 
   defstruct [cargoes: [], last_cargo_id: 0, cache: nil]
 
