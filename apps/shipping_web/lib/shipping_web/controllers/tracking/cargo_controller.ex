@@ -31,15 +31,16 @@ defmodule Shipping.Web.Tracking.CargoController do
         # to determine the cargo's current status.  Apply oldest events first.
         # The cargo is updated. The tracking status (:on_track, :off_track)
         # is ignored for now.
-        handling_events =
-          Tracking.get_handling_events_by_tracking_id!(cargo.tracking_id)
+        handling_events = Tracking.get_handling_events_by_tracking_id!(cargo.tracking_id)
         {tracking_status, updated_cargo} =
-          Tracking.update_cargo_status(Enum.reverse(handling_events), cargo)
+          handling_events
+          |> Enum.reverse()
+          |> Tracking.update_cargo_status()
         render(conn, "show.html", cargo: updated_cargo, handling_events: handling_events)
       _ ->
         conn
-        |> put_flash(:error, "Invalid tracking number")
-        |> redirect(to: page_path(conn, :index))
+          |> put_flash(:error, "Invalid tracking number")
+          |> redirect(to: page_path(conn, :index))
     end
   end
 

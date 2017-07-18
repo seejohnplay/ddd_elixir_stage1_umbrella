@@ -20,15 +20,17 @@ defmodule Shipping.Web.Tracking.HandlingEventController do
     case Tracking.create_handling_event(handling_event_params) do
       {:ok, handling_event} ->
         # Let everyone who has subscribed  know about the new handling event.
-        TrackingChannel.broadcast_new_handling_event(handling_event)
         # Determine a cargo's new status given this handling event. Update the cargo
-        cargo = Tracking.get_cargo_by_tracking_id!(handling_event.tracking_id)
-        {tracking_status, updated_cargo} = Tracking.update_cargo_status([handling_event], cargo)
-        # Let everyone who has subscribed know the change in the cargo's status
-        TrackingChannel.broadcast_new_cargo_status(updated_cargo.status, handling_event.tracking_id)
+        # Let everyone who has subscribed know the change in the cargo's status.
+        # The tracking status is ignored for now.
+        {tracking_status, updated_cargo} =
+          handling_event
+          |> TrackingChannel.broadcast_new_handling_event()
+          |> Tracking.update_cargo_status()
+          |> TrackingChannel.broadcast_new_cargo_status()
         conn
-        |> put_flash(:info, "Handling event created successfully.")
-        |> redirect(to: tracking_handling_event_path(conn, :index))
+          |> put_flash(:info, "Handling event created successfully.")
+          |> redirect(to: tracking_handling_event_path(conn, :index))
       {:error, %Ecto.Changeset{} = changeset} ->
         render(conn, "new.html", changeset: changeset,
                                 location_map: Tracking.location_map(),

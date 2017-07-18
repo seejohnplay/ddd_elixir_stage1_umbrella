@@ -239,10 +239,14 @@ defmodule Shipping.Tracking do
   The tracking status is either :on_track or :off_track Note that tracking
   status is not currently used anywhere in the Stage 1 demo.
   """
-  def update_cargo_status(handling_events, cargo) do
+  def update_cargo_status(handling_events) when is_list(handling_events) do
+    cargo = get_cargo_by_tracking_id!(List.first(handling_events).tracking_id)
     do_update_cargo_status(handling_events, :on_track, cargo)
   end
-
+  def update_cargo_status(handling_event) do
+    cargo = get_cargo_by_tracking_id!(handling_event.tracking_id)
+    do_update_cargo_status([handling_event], :on_track, cargo)
+  end
   defp do_update_cargo_status([%HandlingEvent{type: type} | handling_events],
                           _tracking_status,
                           %Cargo{status: status} = cargo) do

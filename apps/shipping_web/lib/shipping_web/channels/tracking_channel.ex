@@ -31,14 +31,15 @@ defmodule Shipping.Web.TrackingChannel do
       "tracking:#{handling_event.tracking_id}",
       "new_handling_event",
       to_map(handling_event))
+    handling_event
   end
 
-  def broadcast_new_cargo_status(status, tracking_id) do
+  def broadcast_new_cargo_status({tracking_status, cargo} = status_and_cargo) do
     Shipping.Web.Endpoint.broadcast(
-    "tracking:#{tracking_id}",
-    "new_cargo_status",
-    %{status: status}
-    )
+      "tracking:#{cargo.tracking_id}",
+      "new_cargo_status",
+      %{status: cargo.status})
+    status_and_cargo
   end
 
   defp to_map(handling_event) do
