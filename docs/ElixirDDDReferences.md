@@ -10,3 +10,8 @@
 8. ElixirDaze [talk](https://www.youtube.com/watch?v=AnYm0rTJNVg): Using your Umbrella. Inspired by DDD.
 9. [Elixir Application Design](http://learningelixir.joekain.com/elixir-application-design-posts/) - a series of blog post by Joseph Kain.
 10. [Thinking in a Highly Concurrent, Mostly-functional language](https://www.youtube.com/watch?v=d5G3P2iosmA&index=11&list=PLE7tQUdRKcyakbmyFcmznq2iNtL80mCsT) by Francesco Cesarini.
+11. [Why I won't leave Ruby for Elixir](http://insights.workshop14.io/2016/04/18/why-i-cant-leave-ruby-for-elixir.html)
+12. [Vaughn Vernon: Reactive Domain-Driven Design](https://www.infoq.com/news/2013/11/vernon-reactive-ddd): DDD with Reactive Streams and Actors. Think Elixir's GenStage. Aggregates as actors. Also: [Vaughn Vernon on the Actor Model and Domain-Driven Design](https://www.infoq.com/news/2013/06/actor-model-ddd)
+13. [Implementing CQRS on top of OTP (in Elixir)](http://slides.com/hubertlepicki/implementing-cqrs-in-elixir#/): Slides from Hubert Lepicki
+14. [CQRS with Elixir and Phoenix](http://jfcloutier.github.io/jekyll/update/2015/11/04/cqrs_elixir_phoenix.html): J.F. Cloutier's notes. Provides Elixir macros to handle the distinction between Queries and Commands automagically.
+15. [Bryan Hunter - CQRS with Erlang](https://vimeo.com/97318824)
