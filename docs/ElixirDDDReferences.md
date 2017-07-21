@@ -15,3 +15,4 @@
 13. [Implementing CQRS on top of OTP (in Elixir)](http://slides.com/hubertlepicki/implementing-cqrs-in-elixir#/): Slides from Hubert Lepicki
 14. [CQRS with Elixir and Phoenix](http://jfcloutier.github.io/jekyll/update/2015/11/04/cqrs_elixir_phoenix.html): J.F. Cloutier's notes. Provides Elixir macros to handle the distinction between Queries and Commands automagically.
 15. [Bryan Hunter - CQRS with Erlang](https://vimeo.com/97318824)
+16. [Introduction to Domain Driven Design, CQRS and Event Sourcing](https://www.kenneth-truyers.net/2013/12/05/introduction-to-domain-driven-design-cqrs-and-event-sourcing/).
