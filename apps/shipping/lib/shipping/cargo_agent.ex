@@ -13,7 +13,8 @@ defmodule Shipping.CargoAgent do
 
   defstruct [cargoes: [], last_cargo_id: 0, cache: nil]
 
-  alias Shipping.Tracking.Cargo
+  # The Aggregate is Cargoes
+  alias Shipping.Cargoes.Cargo
 
   @doc """
   Before starting the Agent process, start_link first loads any Cargoes

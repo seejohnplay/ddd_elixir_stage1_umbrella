@@ -32,7 +32,7 @@ defmodule Shipping.Web.Tracking.CargoController do
         # to determine the cargo's current status.  Apply oldest events first.
         # The cargo is updated. The tracking status (:on_track, :off_track)
         # is ignored for now.
-        handling_events = Cargoes.get_delivery_history_by_tracking_id(cargo.tracking_id)
+        handling_events = Cargoes.get_delivery_history_for_tracking_id(cargo.tracking_id)
         {tracking_status, updated_cargo} =
           handling_events
           |> Enum.reverse()
