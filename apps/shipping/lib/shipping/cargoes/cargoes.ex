@@ -1,4 +1,4 @@
-defmodule Shipping.Tracking do
+defmodule Shipping.Cargoes do
   @moduledoc """
   The boundary for the Tracking system.
   """
@@ -6,7 +6,7 @@ defmodule Shipping.Tracking do
   import Ecto.Query, warn: false
   alias Shipping.Repo
 
-  alias Shipping.Tracking.Cargo
+  alias Shipping.Cargoes.Cargo
 
   @doc """
   Returns the list of cargoes.
@@ -118,7 +118,7 @@ defmodule Shipping.Tracking do
     Cargo.changeset(cargo, %{})
   end
 
-  alias Shipping.Tracking.HandlingEvent
+  alias Shipping.HandlingEvents.HandlingEvent
 
   @doc """
   Returns the list of handling_events.

@@ -1,10 +1,10 @@
-defmodule Shipping.Tracking.HandlingEvent do
+defmodule Shipping.Cargoes.DeliveryHistory do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Shipping.Tracking.HandlingEvent
+  alias Shipping.HandlingEvents.HandlingEvent
 
 
-  schema "handling_events" do
+  schema "delivery_histories" do
     field :completion_time, :utc_datetime
     field :location, :string
     field :registration_time, :utc_datetime
