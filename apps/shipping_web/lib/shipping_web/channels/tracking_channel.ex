@@ -1,10 +1,11 @@
 defmodule Shipping.Web.TrackingChannel do
   use Phoenix.Channel
 
-  alias Shipping.Tracking
+  # The Cargoes Aggregate
+  alias Shipping.Cargoes
 
   def join("tracking:" <> tracking_id, _message, socket) do
-    handling_events = Tracking.get_handling_events_by_tracking_id!(tracking_id)
+    handling_events = Cargoes.get_delivery_history_for_tracking_id(tracking_id)
 
     {:ok, assign(socket, :handling_events, handling_events)}
   end

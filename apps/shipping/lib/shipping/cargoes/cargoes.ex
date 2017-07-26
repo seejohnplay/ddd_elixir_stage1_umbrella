@@ -1,6 +1,6 @@
 defmodule Shipping.Cargoes do
   @moduledoc """
-  The boundary for the Tracking system.
+  The boundary for the Cargoes Aggregate.
   """
 
   import Ecto.Query, warn: false
@@ -134,21 +134,16 @@ defmodule Shipping.Cargoes do
   end
 
   @doc """
-  Gets all handling events for a tracking id.
+  Gets  the delivery history (all handling events to date)
+  for a tracking id.
 
   Raises `Ecto.NoResultsError` if the Handling event does not exist.
 
   ## Examples
 
-      iex> get_handling_event_by_tracking_id!(123)
-      [%HandlingEvent{}]
-
-      iex> get_handling_event_by_tracking_id!(456)
-      ** (Ecto.NoResultsError)
-
   """
-  def get_handling_events_by_tracking_id!(tracking_id) do
-    Repo.get_by_tracking_id!(HandlingEvent, tracking_id)
+  def get_delivery_history_for_tracking_id!(tracking_id) do
+    DeliveryHistory.for_tracking_id(tracking_id)
   end
 
   @doc """
