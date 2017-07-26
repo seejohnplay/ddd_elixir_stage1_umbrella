@@ -8,7 +8,7 @@ defmodule Shipping.Cargoes do
 
   alias Shipping.Cargoes.{Cargo, DeliveryHistory}
   alias Shipping.HandlingEvents.HandlingEvent
-  
+
   @doc """
   Returns the list of cargoes.
 
