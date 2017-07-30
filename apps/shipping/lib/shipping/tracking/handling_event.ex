@@ -1,7 +1,8 @@
 defmodule Shipping.Tracking.HandlingEvent do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Shipping.Tracking.HandlingEvent
+  alias Shipping.Tracking
+  alias Shipping.Tracking.{Cargo, HandlingEvent}
 
 
   schema "handling_events" do
@@ -28,5 +29,16 @@ defmodule Shipping.Tracking.HandlingEvent do
     handling_event
     |> cast(attrs, [:type, :location, :completion_time, :registration_time, :tracking_id, :voyage])
     |> validate_required([:type, :location, :completion_time, :registration_time, :tracking_id])
+    |> validate_tracking_id()
+  end
+
+  @doc """
+  A cargo with this tracking id needs to exist.
+  """
+  defp validate_tracking_id(handling_event) do
+    case Tracking.get_cargo_by_tracking_id!(fetch_field(handling_event, :tracking_id)) do
+      nil -> add_error(handling_event, :tracking_id, "Cannot find tracking number.")
+      cargo -> handling_event
+    end
   end
 end
