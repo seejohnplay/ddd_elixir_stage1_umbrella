@@ -56,7 +56,7 @@ In the Handler's window enter: [localhost:4000/tracking/handling_events](localho
 
 Cargoes and HandlingEvents are managed by Elixir Agents. They are saved in their respective agent's state and in a file cache. The files are loaded by default  when this application is started. The files are named "cargoes.json" and "handling_events.json", respectively,
 and are in the topmost directory. Entries in these files can be deleted if you wish to start from scratch and they can be
-added to with any text editor so long as the id values are unique. Note that the starting status for a new Cargo is "BOOKED".
+added to with any text editor so long as the id values are unique. Note that the starting status for a new Cargo is "NOT RECIEVED".
 
 * [localhost:4000/tracking/handling_events](localhost:4000/tracking/handling_events) will list all of the handling events stored in its agent's state.
 * [localhost:4000/tracking/cargoes](localhost:4000/tracking/cargoes) will list all of the cargoes stored in its agent's state.

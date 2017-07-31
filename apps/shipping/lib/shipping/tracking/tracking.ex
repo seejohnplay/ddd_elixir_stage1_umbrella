@@ -266,7 +266,7 @@ defmodule Shipping.Tracking do
 
   # State transistion for cargo status given a handling event
   # This is incomplete.
-  defp next_status("RECEIVE", "BOOKED"), do: {:on_track, "IN PORT"}
+  defp next_status("RECEIVE", "NOT RECEIVED"), do: {:on_track, "IN PORT"}
   defp next_status("CUSTOMS", "IN PORT"), do: {:on_track, "IN PORT"}
   defp next_status("CLAIM", "IN PORT"), do: {:on_track, "CLAIMED"}
   defp next_status("LOAD", "CLEARED"), do: {:on_track, "ON CARRIER"}
