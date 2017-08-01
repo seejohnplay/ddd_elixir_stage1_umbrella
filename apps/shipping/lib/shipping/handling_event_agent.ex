@@ -13,7 +13,7 @@ defmodule Shipping.HandlingEventAgent do
 
   defstruct [events: [], last_event_id: 0, cache: nil]
 
-  alias Shipping.Tracking.HandlingEvent
+  alias Shipping.HandlingEvents.HandlingEvent
 
   @doc """
   Before starting the Agent process, start_link first loads any Handling Events

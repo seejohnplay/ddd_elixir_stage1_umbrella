@@ -1,7 +1,7 @@
-defmodule Shipping.Tracking.Cargo do
+defmodule Shipping.Cargoes.Cargo do
   use Ecto.Schema
   import Ecto.Changeset
-  alias Shipping.Tracking.Cargo
+  alias Shipping.Cargoes.Cargo
 
   @derive {Phoenix.Param, key: :tracking_id}
   schema "cargoes" do
