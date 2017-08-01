@@ -1,13 +1,8 @@
 defmodule Shipping.HandlingEvents.HandlingEvent do
   use Ecto.Schema
   import Ecto.Changeset
-<<<<<<< HEAD:apps/shipping/lib/shipping/tracking/handling_event.ex
-  alias Shipping.Tracking
-  alias Shipping.Tracking.{Cargo, HandlingEvent}
-=======
   # The Aggregate is HandlingEvents
   alias Shipping.HandlingEvents.HandlingEvent
->>>>>>> cargoes_agg:apps/shipping/lib/shipping/handling_events/handling_event.ex
 
 
   schema "handling_events" do
