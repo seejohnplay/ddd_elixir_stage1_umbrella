@@ -3,6 +3,8 @@ defmodule Shipping.HandlingEvents.HandlingEvent do
   import Ecto.Changeset
   # The Aggregate is HandlingEvents
   alias Shipping.HandlingEvents.HandlingEvent
+  # Cargoes Aggregates
+  alias Shipping.Cargoes
 
 
   schema "handling_events" do
@@ -36,9 +38,9 @@ defmodule Shipping.HandlingEvents.HandlingEvent do
   A cargo with this tracking id needs to exist.
   """
   defp validate_tracking_id(handling_event) do
-    case Tracking.get_cargo_by_tracking_id!(fetch_field(handling_event, :tracking_id)) do
+    case Cargoes.get_cargo_by_tracking_id!(get_field(handling_event, :tracking_id)) do
       nil -> add_error(handling_event, :tracking_id, "Cannot find tracking number.")
-      cargo -> handling_event
+      cargo -> handling_event          
     end
   end
 
