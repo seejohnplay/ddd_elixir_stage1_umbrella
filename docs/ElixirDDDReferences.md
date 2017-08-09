@@ -18,3 +18,4 @@
 16. [Introduction to Domain Driven Design, CQRS and Event Sourcing](https://www.kenneth-truyers.net/2013/12/05/introduction-to-domain-driven-design-cqrs-and-event-sourcing/).
 17. [Pawel Kaczor: Reactive DDD with Akka](http://pkaczor.blogspot.in/2014/04/reactive-ddd-with-akka.html). Scala and Akka. Aggregate root as an actor. Command sourcing. Event sourcing.
 18. [Functinal Web Development With Elixir, OTP, and Phoenix](https://pragprog.com/book/lhelph/functional-web-development-with-elixir-otp-and-phoenix). Pragmatic Programmers book.
+19. [Authorization Considerations For Phoenix Contexts](https://dockyard.com/blog/2017/08/01/authorization-for-phoenix-contexts?utm_content=buffer5f6df&utm_medium=social&utm_source=twitter.com&utm_campaign=buffer). Chris McCord discusses where to put authorization when using contexts.
