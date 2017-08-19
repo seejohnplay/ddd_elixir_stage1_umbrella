@@ -10,19 +10,12 @@
 
 Make sure you have the following installed:
 * elixir 1.4
-* phoenix 1.3 rc 2 __NOTA BENE:__ As of, 2 Jul 2017, the application requires the master branch of Phoenix. See below, in the building steps, on how to incorporate this version of Phoenix in the mix instructions (mix.exs).
+* phoenix 1.3
 
 ### Generating this project.
 Skip these steps if you have retrieved the project from GitHub.
 1. mix phx.new ddd_elixir_stage1 --umbrella --app shipping
 2. cd ddd_elixir_stage1_umbrella
-3. mix deps.clean phoenix
-4. Edit the mix.exs file in apps/shipping_web. Change the phoenix dependency to the following:
-~~~~
-{:phoenix, github: "phoenixframework/phoenix", override: true},
-~~~~
-this will ensure that you are using the master branch of the Phoenix repository.
-
 5. mix deps.get
 6. cd apps/shipping_web
 7. mix phx.gen.html Tracking Cargo cargoes tracking_id status --web Tracking
